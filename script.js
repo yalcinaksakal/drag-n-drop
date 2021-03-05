@@ -55,14 +55,14 @@ function createItemEl(columnEl, column, item, index) {
   listEl.contentEditable = true;
   listEl.id = index;
 
-  // listEl.setAttribute(`onfocusout`, `updateItem(${index},${column})`);
-  // const img = document.createElement("img");
-  // img.setAttribute("src", "./trash.png");
-  // img.style.width = "5px";
-  // img.style.height = "auto";
-  // img.style.float = "left";
-  // img.style.marginRight='2px';
-  // listEl.prepend(img);
+  listEl.setAttribute(`onfocusout`, `updateItem(${index},${column})`);
+  const img = document.createElement("img");
+  img.setAttribute("src", "./trash.png");
+  img.style.width = "18px";
+  img.style.height = "auto";
+  img.style.float = "left";
+  img.style.marginRight = "2px";
+  listEl.prepend(img);
   columnEl.appendChild(listEl);
 }
 
@@ -160,5 +160,8 @@ function hideInputBox(column) {
   addToColumn(column);
 }
 
+window.addEventListener("click", e => {
+  if (e.target.closest("img")) e.target.closest(".drag-item").textContent = "";
+});
 //onload
 updateDOM();
